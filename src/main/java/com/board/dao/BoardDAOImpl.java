@@ -16,7 +16,6 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Inject /* 객체 타입에 맞게 클래스를 주입 */
  private SqlSession sql;
- 
  private static String namespace = "com.board.mappers.board";
 
  // 게시물 목록
@@ -31,6 +30,12 @@ public void write(BoardVO vo) throws Exception {
 	// TODO Auto-generated method stub
 	
 	sql.insert(namespace+ ".write",vo); 
+}
+
+@Override
+public BoardVO view(int bno) throws Exception {
+	// TODO Auto-generated method stub
+	return sql.selectOne(namespace+".view",bno);
 }
 
 }

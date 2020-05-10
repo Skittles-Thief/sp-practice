@@ -5,7 +5,7 @@
 <mapper namespace="com.board.mappers.board">
 <!-- 게시물 목록 -->
 
- <!-- id는 쿼리이름 resulttype은 결과가 반환되는곳 -->
+ <!-- id는 쿼리이름 resulttype은 값을 내보낼때 사용 -->
 <select id="list" resultType="com.board.domain.BoardVO">
  select
   bno, title, content, writer, regDate, viewCnt
@@ -16,4 +16,12 @@
 <insert id="write" parameterType="com.board.domain.BoardVO">
 	insert into tbl_board(title,content,writer) values(#{title},#{content},#{writer})
 </insert>
+
+ <!-- 넣을 값의 자료형, 받을 값의 자료형 -->
+<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
+	select bno,title,content,writer,regDate,viewCnt 
+	from tbl_board 
+	where bno = #{bno} 
+</select>
+
 </mapper>
